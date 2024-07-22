@@ -40,8 +40,8 @@ def gaussian(x, amplitude, mean, stddev):
 def smooth(peaks, num, intensity):
     if intensity == 0:
         return np.zeros(25)
-    Fer_sigma = 0.011
-    FerSumo_sigma = 0.024
+    Fer_sigma = 3.7
+    FerSumo_sigma = 10.5
     sigma = FerSumo_sigma * (24 - num) / 24.0 + Fer_sigma * num / 24.0
     peak_center = peaks[num]
     smoothed_peak = np.zeros(25)
@@ -103,7 +103,7 @@ def count(state, N, K, indx):
         data[j, :] = c[j, N - j, :]
 
     for i in range(24):
-        data[i, :] *= ((13+1+7+16) * i + (22+5+8+18) * (24 - i))
+        data[i, :] *=  ((13 + 1 + 7 + 16)*i + (22 + 5 + 8 + 18)*(24-i))
 
     for i in range(data.shape[1]):
         data[:, i] = smooth_profile(data[:, i] / np.sum(data[:, i], axis=0))

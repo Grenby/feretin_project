@@ -104,7 +104,7 @@ def count(state, N, K, indx):
         data[j, :] = c[j, N - j, :]
 
     for i in range(24):
-        data[i, :] *=  ((13 + 1 + 7 + 16)*i + (22 + 5 + 8 + 18)*(24-i))
+        data[i, :] *=  ((19.7)*i + (31.3)*(24-i))
 
     for i in range(data.shape[1]):
         data[:, i] = smooth_profile(data[:, i] / np.sum(data[:, i], axis=0))

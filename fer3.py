@@ -178,6 +178,9 @@ if __name__ == '__main__':
     state = state.reshape(7,1)
     state, data, chi2, delta = count(state=state, N=N, K=K, indx=indx)
     # res = {delta[0]: state}
+    directory = './plots'
+    if not os.path.exists(directory):
+        os.makedirs(directory)
     if 1 == 1:
         for i in trange(1000):
             if len(res) == 0:
@@ -230,7 +233,7 @@ if __name__ == '__main__':
                 axs.set(xlabel='i', ylabel='C')
                 axs.legend(ncol=5)
                 plt.savefig(
-                    'plots_2024_07_2/' + str(thread) + 'chi2: {:.3f}, delta:{:.3f}'.format(min_chi2,
+                    'plots/' + str(thread) + 'chi2: {:.3f}, delta:{:.3f}'.format(min_chi2,
                                                                                            min_delta) + '_{:.4f}_{:.4f}_{:.4f}_{:.4f}_{:.4f}_{:.4f}_{:.4f}'.format(
                         *q[0][1])
                     + '.png')

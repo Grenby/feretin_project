@@ -1,4 +1,5 @@
 import itertools
+import os.path
 import random
 import sys
 from multiprocessing import Pool
@@ -75,8 +76,8 @@ def gaussian(x, amplitude, mean, stddev):
 def smooth(peaks, num, intensity):
     if intensity == 0:
         return np.zeros(25)
-    Fer_sigma = 0.011
-    FerSumo_sigma = 0.024
+    Fer_sigma = 3.7
+    FerSumo_sigma = 10.5
     sigma = FerSumo_sigma * (24 - num) / 24.0 + Fer_sigma * num / 24.0
     peak_center = peaks[num]
     smoothed_peak = np.zeros(25)
@@ -136,8 +137,7 @@ def get_b():
     b[23] = 0.009
     b[24] = 0.007
 
-    # b /= np.sum(b)
-
+    b /= np.sum(b)
     return b
 
 
@@ -325,8 +325,8 @@ if __name__ == '__main__':
                 axs.set(xlabel='i', ylabel='C')
                 axs.legend(ncol=5)
                 plt.savefig(
-                    'plots/' + str(thread) + 'chi2: {:.3f}, delta:{:.3f}'.format(min_chi2,
-                                                                                           min_delta) + '_' + tt + '.png')
+                    os.path.join('plots',str(thread) + 'chi2: {:.3f}, delta:{:.3f}'.format(min_chi2,
+                                                                                           min_delta) + '_' + tt + '.png'))
                 plt.clf()
                 plt.close(fig)
                 # break

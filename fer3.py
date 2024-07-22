@@ -234,7 +234,7 @@ if __name__ == '__main__':
                 axs.set(xlabel='i', ylabel='C')
                 axs.legend(ncol=5)
                 plt.savefig(
-                    'plots/' + str(thread) + 'chi2: {:.3f}, delta:{:.3f}'.format(min_chi2,
+                    './plots/' + str(thread) + 'chi2: {:.3f}, delta:{:.3f}'.format(min_chi2,
                                                                                            min_delta) + '_{:.4f}_{:.4f}_{:.4f}_{:.4f}_{:.4f}_{:.4f}_{:.4f}'.format(
                         *q[0][1])
                     + '.png')

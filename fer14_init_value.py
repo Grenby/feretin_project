@@ -164,7 +164,7 @@ if __name__ == '__main__':
     init_state = 14
 
     STEP = 0.1
-    T = 3
+    T = 300
 
     batch_size = 300
     best = 5

@@ -106,7 +106,6 @@ def count(state, N, K, indx):
         data[i, :] *= ((13+1+7+16) * i + (22+5+8+18) * (24 - i))
 
     for i in range(data.shape[1]):
-        print(data[:, i] / np.sum(data[:, i]))
         data[:, i] = smooth_profile(data[:, i] / np.sum(data[:, i], axis=0))
     data[data < 0.00001] = 0.00001
     delta = abs(data - get_b()[:, None])
@@ -192,7 +191,6 @@ if __name__ == '__main__':
                             val = min(max((res[k][l] + random.random() / dd - 1 / 2 / dd), 0), 1)
                             batch[l, multy * num + j] = val
             state, data, chi2, delta = count(state=batch, N=N, K=K, indx=indx)
-            print(min(chi2), min(delta))
             err_func = delta
             err_min = min_delta
 
@@ -206,6 +204,7 @@ if __name__ == '__main__':
                 min_data = data[:, tmp[0]]
                 min_chi2 = chi2[tmp[0]]
                 min_delta = delta[tmp[0]]
+            print(min_data)
 
             for i in range(best):
                 res[err_func[tmp[i]]] = state[:, tmp[i]]
